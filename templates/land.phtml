@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Slim 3</title>
+        <title>Clover Example</title>
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
@@ -24,20 +24,15 @@
                 margin-bottom: 0;
             }
         </style>
-
-        <script>
-            function getOrders() {
-                const theUrl = '/orders'
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-                xmlHttp.send( null );
-                window.alert(xmlHttp.responseText);
-            }
-        </script>
     </head>
     <body>
-        <h1>Clover PHP Example</h1>
-        <button onClick="getOrders()">Get Orders</button>
+        <h1>Slim</h1>
+        <div>This is a the landing page.</div>
 
+        <?php if (isset($name)) : ?>
+            <h2>Hello <?= htmlspecialchars($name); ?>!</h2>
+        <?php else: ?>
+            <p>Try <a href="http://www.slimframework.com">SlimFramework</a></p>
+        <?php endif; ?>
     </body>
 </html>
