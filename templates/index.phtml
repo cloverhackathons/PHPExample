@@ -39,13 +39,26 @@
         <button onClick="handleOnclick(this)" id="employees">Get Employees</button>
         <button onClick="handleOnclick(this)" id="customers">Get Customers</button>
 
-        <iframe id="showWindow" src="">
+
+        <form action="/orders" method="post" target="myiFrame">
+          <input type="submit" value="Create Order!"/>
+        </form>
+
+        <form action="/items" method="post" target="myiFrame">
+          <input type="submit" value="Create Item!"/>
+        </form>
+
+        <iframe name="myiFrame" id="showWindow" src="">
         </iframe>
 
         <script>
           const showWindow = document.getElementById("showWindow");
           function handleOnclick(e) {
             showWindow.src = '/' + e.id;
+          }
+
+          function handleOnPost(e) {
+
           }
         </script>
 

@@ -2,7 +2,9 @@
 
 This application demonstrates how to complete OAuth through Clover to obtain an access token, then using the access token, retrieving merchant data using REST API.
 
-## Quick Run
+## Live version:
+
+## Run locally
 Download the example
 Then run the following command on your terminal:
 `cd [my-app-name]; php -S localhost:8080 -t public public/index.php`
@@ -40,3 +42,6 @@ $oauth = curl_exec($ch);`
 This will return an `access token` which can then be used to make calls to our REST endpoints: https://www.clover.com/api_docs/
 
 ## Clover Example REST Calls
+
+Using cUrl, making REST API requests.
+More info can be found in our [https://www.clover.com/api_docs/](API Reference Page)
