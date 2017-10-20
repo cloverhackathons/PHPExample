@@ -45,7 +45,20 @@
         </form>
 
         <form action="/items" method="post" target="myiFrame">
+          <input type="text" name="name" placeholder="burger"/>
+          <input type="number" name="price" placeholder="10"/>
           <input type="submit" value="Create Item!"/>
+        </form>
+
+        <form action="/customers" method="post" target="myiFrame">
+          <input type="text" name="fname" placeholder="John"/>
+          <input type="text" name="lname" placeholder="Smith"/>
+          <input type="submit" value="Create Customers!"/>
+        </form>
+
+        <form action="/employees" method="post" target="myiFrame">
+          <input type="text" name="name" placeholder="Jane Smith"/>
+          <input type="submit" value="Create Employees!"/>
         </form>
 
         <iframe name="myiFrame" id="showWindow" src="">
