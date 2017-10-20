@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirect</title>
+  </head>
+  <body style="margin: 50px auto; text-align: center">
+    <h1>You need access token from clover.com, you will be <a href="/redirect">redirected</a> in 3 secs.</h1>
+
+    <script>
+      setTimeout(()=>{
+        window.location = '/redirect';
+      }, 3000);
+    </script>
+  </body>
+</html>
