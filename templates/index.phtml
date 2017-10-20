@@ -6,9 +6,9 @@
         <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
         <style>
             body {
-                margin: 50px 0 0 0;
                 padding: 0;
                 width: 100%;
+                margin: 50px auto;
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
                 text-align: center;
                 color: #aaa;
@@ -23,21 +23,31 @@
                 font-weight: 200;
                 margin-bottom: 0;
             }
-        </style>
 
-        <script>
-            function getOrders() {
-                const theUrl = '/orders'
-                var xmlHttp = new XMLHttpRequest();
-                xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-                xmlHttp.send( null );
-                window.alert(xmlHttp.responseText);
+            iframe {
+              margin: 50px;
+              width: 500px;
+              height: 500px;
+              overflow: scroll;
             }
-        </script>
+        </style>
     </head>
     <body>
         <h1>Clover PHP Example</h1>
-        <button onClick="getOrders()">Get Orders</button>
+        <button onClick="handleOnclick(this)" id="orders">Get Orders</button>
+        <button onClick="handleOnclick(this)" id="items">Get Items</button>
+        <button onClick="handleOnclick(this)" id="employees">Get Employees</button>
+        <button onClick="handleOnclick(this)" id="customers">Get Customers</button>
+
+        <iframe id="showWindow" src="">
+        </iframe>
+
+        <script>
+          const showWindow = document.getElementById("showWindow");
+          function handleOnclick(e) {
+            showWindow.src = '/' + e.id;
+          }
+        </script>
 
     </body>
 </html>

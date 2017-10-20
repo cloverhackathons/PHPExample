@@ -18,6 +18,7 @@ $container['logger'] = function ($c) {
     return $logger;
 };
 
+//DB
 $container['db'] = function($c) {
     $db = $c->get('settings')['db'];
     $pdo = new PDO("mysql:host=" . $db['host']. ";dbname=" . $db['dbname'],
@@ -25,4 +26,9 @@ $container['db'] = function($c) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
     return $pdo;
+};
+
+//Using Session for holding oauth information
+$container['session'] = function ($c) {
+  return new \SlimSession\Helper;
 };

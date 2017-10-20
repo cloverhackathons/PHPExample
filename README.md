@@ -1,26 +1,42 @@
-# Slim Framework 3 Skeleton Application
+# Clover PHP Example
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
+This application demonstrates how to complete OAuth through Clover to obtain an access token, then using the access token, retrieving merchant data using REST API.
 
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+## Quick Run
+Download the example
+Then run the following command on your terminal:
+`cd [my-app-name]; php -S localhost:8080 -t public public/index.php`
 
-## Install the Application
+## Clover OAuth Flow
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+In `/src/routes.php` you'll find where routes are defined.
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+`$params = $request->getParams();` will retrieve the URL params if present. eg. merchant_id, code, etc.
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+If no params are present, you will need to redirect to Clover with your app Id (client_id) and the redirect_uri as parameters.
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+`return $response->withRedirect("https://sandbox.dev.clover.com/oauth/authorize?client_id=Z58G1TDHEZRQG&redirect_uri=http://localhost:8080", 301);`
 
-To run the application in development, you can also run this command. 
+The merchant will be redirected to their Clover login page, where they can enter their login information.
 
-	php composer.phar start
+Once they login, they will be returned to your webapp with params eg. merchant_id, code, etc. Grab those configs in addition to static `appSecret`, which you can find your app's settings.
 
-Run this command to run the test suite
+`$vars = array(
+                '{$appId}'=> $params["client_id"],
+                '{$appSecret}'=> $appSecret,
+                '{$codeUrlParam}'=> $params['code']
+            );`
 
-	php composer.phar test
+Using those params, make a call to Clover's OAuth endpoint:
+` $url = strtr('https://sandbox.dev.clover.com/oauth/token?client_id={$appId}&client_secret={$appSecret}&code={$codeUrlParam}', $vars);`
 
-That's it! Now go build something cool.
+In this example, this is done using cUrl:
+
+`$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+$oauth = curl_exec($ch);`
+
+This will return an `access token` which can then be used to make calls to our REST endpoints: https://www.clover.com/api_docs/
+
+## Clover Example REST Calls
