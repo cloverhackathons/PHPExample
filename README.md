@@ -20,7 +20,8 @@ In `/src/routes.php` you'll find where routes are defined.
 If no params are present, you will need to redirect to Clover with your app Id (client_id) and the redirect_uri as parameters.
 
 ```php
-return $response->withRedirect("https://sandbox.dev.clover.com/oauth/authorize?client_id={client_id}&redirect_uri={uri}", 301);```
+return $response->withRedirect("https://sandbox.dev.clover.com/oauth/authorize?client_id={client_id}&redirect_uri={uri}", 301);
+```
 
 The merchant will be redirected to their Clover login page, where they can enter their login information.
 
@@ -31,10 +32,13 @@ $vars = array(
     '{$appId}'=> $params["client_id"],
     '{$appSecret}'=> $appSecret,
     '{$codeUrlParam}'=> $params['code']
-);```
+);
+```
 
 Using those params, make a call to Clover's OAuth endpoint:
-```php $url = strtr('https://sandbox.dev.clover.com/oauth/token?client_id={$appId}&client_secret={$appSecret}&code={$codeUrlParam}', $vars);```
+```php
+$url = strtr('https://sandbox.dev.clover.com/oauth/token?client_id={$appId}&client_secret={$appSecret}&code={$codeUrlParam}', $vars);
+```
 
 In this example, this is done using cUrl:
 
@@ -42,7 +46,8 @@ In this example, this is done using cUrl:
 $ch = curl_init();
 curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-$oauth = curl_exec($ch);```
+$oauth = curl_exec($ch);
+```
 
 This will return an `access token` which can then be used to make calls to our REST endpoints: https://www.clover.com/api_docs/
 
@@ -59,4 +64,5 @@ curl_setopt($ch, CURLOPT_URL, $url);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array(
   'Authorization: Bearer ' . $oauth
 ));
-curl_exec($ch);```
+curl_exec($ch);
+```
