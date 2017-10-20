@@ -2,7 +2,8 @@
 
 This application demonstrates how to complete OAuth through Clover to obtain an access token, then using the access token, retrieving merchant data using REST API.
 
-## Live version:
+## Live version: https://clover-php-example.herokuapp.com/
+Z58G1TDHEZRQG (PHPExample) must be installed on your test merchant. Request access @miqkmas (samkim).
 
 ## Run locally
 Download the example
